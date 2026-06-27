@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom utilities ── */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* ── Animated gradient background ── */
+.app-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0c0a1a 0%, #0f172a 25%, #0c1220 50%, #0a1628 75%, #0d0b1e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 15% 20%, rgba(16, 185, 129, 0.08), transparent),
+    radial-gradient(ellipse 500px 500px at 85% 70%, rgba(56, 189, 248, 0.06), transparent),
+    radial-gradient(ellipse 400px 300px at 50% 50%, rgba(139, 92, 246, 0.04), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Spinner ── */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin 1s linear infinite;
+}
+
+/* ── Slide-up entrance ── */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-up {
+  animation: slideUp 0.45s ease-out both;
+}
+
+/* ── Pulse glow on best match badge ── */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  }
+}
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ── Focus ring ── */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  border-color: #10b981 !important;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
